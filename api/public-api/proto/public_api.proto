@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package tidbyt.api;
+
+import "google/api/annotations.proto";
+
+import "google/api/httpbody.proto";
+
+import "google/protobuf/empty.proto";
+
+import "google/protobuf/field_mask.proto";
+
+import "protoc-gen-swagger/options/annotations.proto";
+
+option optimize_for = SPEED;
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = { info:<title:"Tidbyt API" description:"API for Tidbyt devices." contact:<name:"Tidbyt" url:"https://tidbyt.dev/docs/tidbyt-api" > version:"0.0.1" > host:"api.tidbyt.com" schemes:HTTPS consumes:"application/json" security_definitions:<security:<key:"BearerAuth" value:<type:TYPE_API_KEY description:"Bearer [key]" name:"Authorization" in:IN_HEADER > > > security:<security_requirement:<key:"BearerAuth" value:<> > >  };
+
+message Device {
+  string id = 1;
+
+  string displayName = 2;
+
+  int32 brightness = 3;
+
+  int64 lastSeen = 4;
+
+  bool autoDim = 5;
+}
+
+message App {
+  string id = 1;
+
+  string name = 2;
+
+  string description = 3;
+}
+
+message ListOfApps {
+  repeated App apps = 1;
+}
+
+message ListOfInstallations {
+  repeated Installation installations = 1;
+}
+
+message Installation {
+  string id = 1;
+
+  string appID = 2;
+}
+
+message Image {
+  bytes image = 1;
+}
+
+message GetDeviceRequest {
+  string deviceID = 1;
+}
+
+message UpdateDeviceRequest {
+  Device device = 1;
+
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message ListInstallationsRequest {
+  string deviceID = 1;
+}
+
+message GetPreviewRequest {
+  string deviceID = 1;
+
+  string installationID = 2;
+}
+
+message PushRequest {
+  string deviceID = 1;
+
+  bytes image = 2;
+}
+
+service PublicAPI {
+  rpc GetDevice ( GetDeviceRequest ) returns ( Device ) {
+    option (google.api.http) = { get:"/v0/devices/{deviceID}"  };
+
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = { tags:"Operations"  };
+  }
+
+  rpc UpdateDevice ( UpdateDeviceRequest ) returns ( Device ) {
+    option (google.api.http) = { patch:"/v0/devices/{device.id}" body:"device"  };
+
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = { tags:"Operations"  };
+  }
+
+  rpc ListApps ( google.protobuf.Empty ) returns ( ListOfApps ) {
+    option (google.api.http) = { get:"/v0/apps"  };
+
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = { tags:"Operations"  };
+  }
+
+  rpc ListInstallations ( ListInstallationsRequest ) returns ( ListOfInstallations ) {
+    option (google.api.http) = { get:"/v0/devices/{deviceID}/installations"  };
+
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = { tags:"Operations"  };
+  }
+
+  rpc GetPreview ( GetPreviewRequest ) returns ( google.api.HttpBody ) {
+    option (google.api.http) = { get:"/v0/devices/{deviceID}/installations/{installationID}/preview"  };
+
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = { tags:"Operations"  };
+  }
+
+  rpc Push ( PushRequest ) returns ( google.protobuf.Empty ) {
+    option (google.api.http) = { post:"/v0/devices/{deviceID}/push" body:"*"  };
+
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = { tags:"Operations"  };
+  }
+}
