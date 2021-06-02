@@ -1,4 +1,4 @@
-module github.com/lodge93/tidbyt
+module github.com/betterengineering/tidbyt
 
 go 1.14
 

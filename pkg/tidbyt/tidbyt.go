@@ -22,7 +22,7 @@ import (
 	"net"
 	"time"
 
-	publicapi "github.com/lodge93/tidbyt/api/public-api/proto"
+	publicapi "github.com/betterengineering/tidbyt/api/public-api/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )
@@ -76,4 +76,3 @@ func NewTidbytAPIConn(token string) (*grpc.ClientConn, error) {
 func (t *TidbytClient) Close() error {
 	return t.conn.Close()
 }
-

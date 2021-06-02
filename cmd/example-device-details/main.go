@@ -20,8 +20,8 @@ import (
 	"log"
 	"time"
 
-	publicapi "github.com/lodge93/tidbyt/api/public-api/proto"
-	"github.com/lodge93/tidbyt/pkg/tidbyt"
+	publicapi "github.com/betterengineering/tidbyt/api/public-api/proto"
+	"github.com/betterengineering/tidbyt/pkg/tidbyt"
 )
 
 // example-device-details is an example program to get the device details of your Tidbyt and log them to the screen!

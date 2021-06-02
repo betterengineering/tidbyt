@@ -14,7 +14,7 @@ To run the program as is, set your device details as environment variables and r
 ```bash
 export TIDBYT_DEVICE_ID="<device-id>"
 export TIDBYT_AUTH_TOKEN="<auth-token>"
-go cmd/example-device-details/main.go
+go run cmd/example-device-details/main.go
 ```
 
 ## Regenerate Client
