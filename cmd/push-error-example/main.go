@@ -20,8 +20,8 @@ import (
 	"log"
 	"time"
 
-	publicapi "github.com/lodge93/tidbyt/api/public-api/proto"
-	"github.com/lodge93/tidbyt/pkg/tidbyt"
+	publicapi "github.com/betterengineering/tidbyt/api/public-api/proto"
+	"github.com/betterengineering/tidbyt/pkg/tidbyt"
 )
 
 // push-error-example is temporary to show issues pushing a new image to the Tidbyt. I'll probably update this to be a

@@ -4,10 +4,10 @@ import (
 	"context"
 	"log"
 
+	"github.com/betterengineering/tidbyt/pkg/tidbyt"
 	"github.com/jhump/protoreflect/desc"
 	"github.com/jhump/protoreflect/desc/protoprint"
 	"github.com/jhump/protoreflect/grpcreflect"
-	"github.com/lodge93/tidbyt/pkg/tidbyt"
 	rpb "google.golang.org/grpc/reflection/grpc_reflection_v1alpha"
 )
 
